@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+ 
+
+
+
+<head>
+	<meta charset="UTF-8">
+	<title>tarot</title>
+</head>
+ 
+<body>
+	hello world
+	<div id="deck">
+
+	</div>
+	<button id="draw">抽牌</button>
+</body>
+ 
+<script>
+	const cards=[
+		{name: "愚者（The Fool，0)",url:"https://jsd.cdn.zzko.cn/gh/hotfoods/forpicx@main/20231124/fool.1arcv53y7nc0.jpg"},
+	    {name:"魔术师（The Magician，I)",url:"https://jsd.cdn.zzko.cn/gh/hotfoods/forpicx@main/20231124/magician.ufq2jlm5dyo.jpg"},
+		{name:"女祭司（The High Priestess，II) ",url:"https://jsd.cdn.zzko.cn/gh/hotfoods/forpicx@main/20231124/high-priestess.cjysm8nq4fk.jpg"},
+		{name:"皇后（The Empress，III)",url:"https://jsd.cdn.zzko.cn/gh/hotfoods/forpicx@main/20231124/empress.7hlt6hweeo80.jpg"},
+		{name:"皇帝（The Emperor，IV)",url:"https://jsd.cdn.zzko.cn/gh/hotfoods/forpicx@main/20231124/emperor.4sbn55mfv7s0.jpg"},
+		{name: "教皇（The Hierophant，or the Pope，V)",url:"https://jsd.cdn.zzko.cn/gh/hotfoods/forpicx@main/20231124/hierophant.1dnmpfy4ijmo.jpg",},
+	    {name:"恋人（The Lovers，VI)",url:"https://jsd.cdn.zzko.cn/gh/hotfoods/forpicx@main/20231124/lovers.4ln6z4htkz60.jpg"},
+		{name:"战车（The Chariot，VII)",url:"https://jsd.cdn.zzko.cn/gh/hotfoods/forpicx@main/20231124/chariot.1lb4sehybn4w.jpg"},
+		{name:"力量（Strength，VIII）",url:"https://jsd.cdn.zzko.cn/gh/hotfoods/forpicx@main/20231124/strength.3o2jqcz4nvo0.jpg"},
+		{name:"隐士（The Hermit，IX) ",url:"https://jsd.cdn.zzko.cn/gh/hotfoods/forpicx@main/20231124/hermit.4ta7c1d2cp40.jpg"},
+		{name: "命运之轮（The Wheel of Fate，X)",url:"https://jsd.cdn.zzko.cn/gh/hotfoods/forpicx@main/20231124/fortune-wheel.4zmu4y3npvs0.jpg",},
+	    {name:"正义（Justice，XI）",url:"https://jsd.cdn.zzko.cn/gh/hotfoods/forpicx@main/20231124/justice.62f94qoftus0.jpg"},
+		{name:"倒吊人（The Hanged Man，XII)",url:"https://jsd.cdn.zzko.cn/gh/hotfoods/forpicx@main/20231124/hanged-man.3wamno9s9qu0.jpg"},
+		{name:"死亡（Death，XIII)",url:"https://jsd.cdn.zzko.cn/gh/hotfoods/forpicx@main/20231124/death.2cq1cwu8eu4g.jpg"},
+		{name:"节欲（Temperance，XIV) ",url:"https://jsd.cdn.zzko.cn/gh/hotfoods/forpicx@main/20231124/temperance.4eoi5pynaw40.jpg"},
+		{name:"恶鬼（The Devil ，XV)  ",url:"https://jsd.cdn.zzko.cn/gh/hotfoods/forpicx@main/20231124/devil.x91kkca80rk.jpg"},
+		{name:"塔（The Tower，XVI) ",url:"https://jsd.cdn.zzko.cn/gh/hotfoods/forpicx@main/20231124/tower.63to0q7hchc0.jpg"},
+		{name:"星辰（The Star，XVII) ",url:"https://jsd.cdn.zzko.cn/gh/hotfoods/forpicx@main/20231124/stars.4pl2w73uep00.jpg"},
+		{name:"月亮（The Moon，XVIII) ",url:"https://jsd.cdn.zzko.cn/gh/hotfoods/forpicx@main/20231124/moon.2pshsd1lqt2.jpg"},
+		{name:"太阳（The Sun，XIX) ",url:"https://jsd.cdn.zzko.cn/gh/hotfoods/forpicx@main/20231124/sun.10kdr3h53gn4.jpg"},
+		{name:"审判（Judgement，XX) ",url:"https://jsd.cdn.zzko.cn/gh/hotfoods/forpicx@main/20231124/judgement.7hyt2xj10mo0.jpg"},
+		{name:"世界（The World，XXI)",url:"https://jsd.cdn.zzko.cn/gh/hotfoods/forpicx@main/20231124/world.5wlmgfp7c8c0.jpg"},
+		]
+	var decklist=[]
+	var deck=document.getElementById("deck")
+    var drawbtn=document.getElementById("draw")
+  
+	drawbtn.onclick=function(){
+		cleardeck()
+        while(decklist.length<3){
+			let random=parseInt(Math.random()*22)
+            if(decklist.indexOf(random)==-1){
+				decklist.push(random)
+                console.log(random,cards[random])
+			}
+		}
+		draw()
+		console.log(decklist)
+	}
+
+	function cleardeck(){
+		var objs=deck.childNodes
+		for (var i = objs.length - 1; i >= 0; i--) {
+             deck.removeChild(objs[i]);
+		}
+		decklist.length=0
+	}
+
+	function draw(){
+		for(let i=0; i<3;i++){
+			var id=decklist[i]
+			var card=document.createElement("div")
+			var con=document.createElement("content")
+			var img=document.createElement("img")
+			img.src=cards[id].url
+			card.innerHTML=cards[id].name
+			card.appendChild(img)
+			deck.appendChild(card)
+		}
+	}
+
+</script>
+</html>
